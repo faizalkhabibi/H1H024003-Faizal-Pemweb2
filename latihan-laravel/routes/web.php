@@ -3,13 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\MatakuliahController;
+use App\Http\Controllers\MahasiswaWebController;
 
 Route::get('/salam', function () {
     return 'Selamat datang di Pemrograman Web II';
-});
-
-Route::get('/mahasiswa/{nim}', function (string $nim) {
-    return 'Data mahasiswa dengan NIM ' . $nim;
 });
 
 Route::get('/semester/{angka}', function (int $angka) {
@@ -20,6 +17,11 @@ Route::get('/data-mahasiswa', [MahasiswaController::class, 'index'])->name('maha
 Route::get('/data-mahasiswa/{nim}', [MahasiswaController::class, 'show'])->name('mahasiswa.show');
 Route::get('/cari-mahasiswa', [MahasiswaController::class, 'cari']);
 
-// Rute Tugas Praktikum Matakuliah (Menghubungkan ke MatakuliahController)
+// Rute Tugas Praktikum Matakuliah
 Route::get('/matakuliah', [MatakuliahController::class, 'index'])->name('matakuliah.index');
 Route::get('/matakuliah/{kode}', [MatakuliahController::class, 'show'])->name('matakuliah.show');
+
+Route::get('/mahasiswa-data', [MahasiswaWebController::class, 'index'])->name('mahasiswa.data');
+
+// Rute Detail Mahasiswa (Tugas 3)
+Route::get('/mahasiswa/{id}', [MahasiswaWebController::class, 'show'])->name('mahasiswa.show');
